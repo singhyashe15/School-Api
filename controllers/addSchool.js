@@ -22,8 +22,9 @@ const addSchool = async (req, res) => {
     
     return res.status(400).json({ message: "Insert failed", success: false });
   } catch (error) {
+    
     if(error.errno === 1062){
-      return res.status(500).json({message : `${error.sqlMessage.split(" ")[5].substring(13)} cannot be duplicate`})
+      return res.status(500).json({message : `${error.sqlMessage.split(" ")[7]} cannot be duplicate`})
     }
     console.log(error.sqlMessage)
     return res.status(500).json({ message:` ${error.message.split(" ")[1]} cannot be empty`, success: false });
